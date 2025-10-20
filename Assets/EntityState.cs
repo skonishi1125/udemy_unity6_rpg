@@ -1,7 +1,8 @@
 using UnityEngine;
 
-public class EntityState
+public abstract class EntityState
 {
+    protected Player player;
     protected StateMachine stateMachine;
     protected string stateName;
 
@@ -9,7 +10,14 @@ public class EntityState
     /// C#でのコンストラクタ定義方法。
     /// EntityStateのインスタンスを作るときに自動で呼ばれ、引数をクラス変数に格納していく。
     /// </summary>
-    public EntityState(StateMachine stateMachine, string stateName)
+    public EntityState(Player player, StateMachine stateMachine, string stateName)
+    {
+        this.player = player;
+        this.stateMachine = stateMachine;
+        this.stateName = stateName;
+    }
+
+    protected EntityState(StateMachine stateMachine, string stateName)
     {
         this.stateMachine = stateMachine;
         this.stateName = stateName;
