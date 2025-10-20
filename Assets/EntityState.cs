@@ -7,6 +7,8 @@ public abstract class EntityState
     protected string animBoolName;
 
     protected Animator anim;
+    protected Rigidbody2D rb;
+    protected PlayerInputSet input;
 
     /// <summary>
     /// C#でのコンストラクタ定義方法。
@@ -19,6 +21,8 @@ public abstract class EntityState
         this.animBoolName = animBoolName;
 
         anim = player.anim;
+        rb = player.rb;
+        input = player.input;
     }
 
     protected EntityState(StateMachine stateMachine, string stateName)
@@ -27,21 +31,21 @@ public abstract class EntityState
         this.animBoolName = stateName;
     }
 
+    // everitime state will be changed, enter will be called
     public virtual void Enter()
     {
-        // everitime state will be changed, enter will be called
         anim.SetBool(animBoolName, true);
     }
 
+    // we going to run logic of the state here
     public virtual void Update()
     {
-        // we going to run logic of the state here
-        Debug.Log("I run update of " + animBoolName);
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
     }
 
+    // this will be called, everytime we exit state and change to a new one
     public virtual void Exit()
     {
-        // this will be called, everytime we exit state and change to a new one
         anim.SetBool(animBoolName, false);
     }
 }
