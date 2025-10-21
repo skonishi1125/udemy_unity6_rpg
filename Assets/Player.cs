@@ -1,4 +1,4 @@
-using UnityEditor.Rendering;
+ï»¿using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
 
     [Header("Attack details")]
     public Vector2 attackVelocity; // 
-    public float attackVelocityDuration = .1f; // ‰¡“ü—Í‚ğ‚µ‚È‚ª‚çUŒ‚‚µ‚½‚Æ‚«A­‚µ‚¾‚¯i‚Ü‚¹‚é‚ªA‚»‚ÌŠÔ(ƒ_ƒbƒVƒ…‚Ìˆ—‚Æ“¯‚¶)
+    public float attackVelocityDuration = .1f; // æ¨ªå…¥åŠ›ã‚’ã—ãªãŒã‚‰æ”»æ’ƒã—ãŸã¨ãã€å°‘ã—ã ã‘é€²ã¾ã›ã‚‹ãŒã€ãã®æ™‚é–“(ãƒ€ãƒƒã‚·ãƒ¥ã®å‡¦ç†ã¨åŒã˜)
 
     [Header("Movement details")]
     public float moveSpeed;
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
     public float dashSpeed = 20;
 
     private bool facingRight = true;
-    public int facingDir { get; private set; } = 1; // Œü‚¢‚Ä‚¢‚é•ûŒü ‰E: 1 ¶: -1
+    public int facingDir { get; private set; } = 1; // å‘ã„ã¦ã„ã‚‹æ–¹å‘ å³: 1 å·¦: -1
     public Vector2 moveInput { get; private set; }
 
     [Header("Collision detection")]
@@ -69,15 +69,15 @@ public class Player : MonoBehaviour
 
 
     /// <summary>
-    ///  ƒXƒNƒŠƒvƒg‚Ìƒ‰ƒCƒtƒTƒCƒNƒ‹‚Ì1‚ÂBAwake‚ÌŒã‚ÉÀs‚³‚ê‚é
+    ///  ã‚¹ã‚¯ãƒªãƒ—ãƒˆã®ãƒ©ã‚¤ãƒ•ã‚µã‚¤ã‚¯ãƒ«ã®1ã¤ã€‚Awakeã®å¾Œã«å®Ÿè¡Œã•ã‚Œã‚‹
     /// </summary>
     private void OnEnable()
     {
         input.Enable();
 
-        //input.Player.Movement.started - input just begins (‚¨‚µ‚Í‚¶‚ßj
-        //input.Player.Movement.performed - input is performed (ƒz[ƒ‹ƒh) ˆÚ“®‚È‚ÇB
-        //input.Player.Movement.canceled - input stops (ƒL[‚ğ—£‚·)
+        //input.Player.Movement.started - input just begins (ãŠã—ã¯ã˜ã‚ï¼‰
+        //input.Player.Movement.performed - input is performed (ãƒ›ãƒ¼ãƒ«ãƒ‰) ç§»å‹•ãªã©ã€‚
+        //input.Player.Movement.canceled - input stops (ã‚­ãƒ¼ã‚’é›¢ã™)
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
     }
@@ -97,7 +97,7 @@ public class Player : MonoBehaviour
         stateMachine.UpdateActiveState();
     }
 
-    // Animator‚Ì“Á’èƒtƒŒ[ƒ€‚É‚±‚Ìƒƒ\ƒbƒh‚ğ•R‚Ã‚¯‚é
+    // Animatorã®ç‰¹å®šãƒ•ãƒ¬ãƒ¼ãƒ ã«ã“ã®ãƒ¡ã‚½ãƒƒãƒ‰ã‚’ç´ã¥ã‘ã‚‹
     public void CallAnimationTrigger()
     {
         stateMachine.currentState.CallAnimationTrigger();
@@ -111,10 +111,10 @@ public class Player : MonoBehaviour
 
     private void HandleFlip(float xVelocity)
     {
-        // ¨‚É“®‚«A‰EŒü‚«‚Å‚È‚¢ê‡
+        // â†’ã«å‹•ãã€å³å‘ãã§ãªã„å ´åˆ
         if (xVelocity > 0 && facingRight == false)
             Flip();
-        // ©‚É“®‚«A‰E‚ğŒü‚¢‚Ä‚¢‚½ê‡
+        // â†ã«å‹•ãã€å³ã‚’å‘ã„ã¦ã„ãŸå ´åˆ
         else if (xVelocity < 0 && facingRight)
             Flip();
     }
@@ -139,3 +139,4 @@ public class Player : MonoBehaviour
     }
 
 }
+

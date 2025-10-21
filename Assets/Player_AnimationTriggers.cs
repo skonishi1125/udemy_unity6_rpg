@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player_AnimationTriggers : MonoBehaviour
 {
@@ -14,4 +14,3 @@ public class Player_AnimationTriggers : MonoBehaviour
         player.CallAnimationTrigger();
     }
 }
-

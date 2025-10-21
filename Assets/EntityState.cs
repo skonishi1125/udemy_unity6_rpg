@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public abstract class EntityState
 {
@@ -15,8 +15,8 @@ public abstract class EntityState
     protected bool triggerCalled;
 
     /// <summary>
-    /// C#‚Å‚ÌƒRƒ“ƒXƒgƒ‰ƒNƒ^’è‹`•û–@B
-    /// EntityState‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğì‚é‚Æ‚«‚É©“®‚ÅŒÄ‚Î‚êAˆø”‚ğƒNƒ‰ƒX•Ï”‚ÉŠi”[‚µ‚Ä‚¢‚­B
+    /// C#ã§ã®ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿å®šç¾©æ–¹æ³•ã€‚
+    /// EntityStateã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œã‚‹ã¨ãã«è‡ªå‹•ã§å‘¼ã°ã‚Œã€å¼•æ•°ã‚’ã‚¯ãƒ©ã‚¹å¤‰æ•°ã«æ ¼ç´ã—ã¦ã„ãã€‚
     /// </summary>
     public EntityState(Player player, StateMachine stateMachine, string animBoolName)
     {
@@ -36,7 +36,7 @@ public abstract class EntityState
     }
 
     // everitime state will be changed, enter will be called
-    // w’è‚³‚ê‚½ó‘Ô‚É“ü‚é‚Æ‚«‚É“®‚©‚·ˆ—B
+    // æŒ‡å®šã•ã‚ŒãŸçŠ¶æ…‹ã«å…¥ã‚‹ã¨ãã«å‹•ã‹ã™å‡¦ç†ã€‚
     public virtual void Enter()
     {
         anim.SetBool(animBoolName, true);
@@ -49,7 +49,7 @@ public abstract class EntityState
         stateTimer -= Time.deltaTime;
         anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
-        // ƒ_ƒbƒVƒ…ƒ{ƒ^ƒ“‚ğ‰Ÿ‚µAƒ_ƒbƒVƒ…‚ª‚Å‚«‚éó‘Ô‚È‚ç
+        // ãƒ€ãƒƒã‚·ãƒ¥ãƒœã‚¿ãƒ³ã‚’æŠ¼ã—ã€ãƒ€ãƒƒã‚·ãƒ¥ãŒã§ãã‚‹çŠ¶æ…‹ãªã‚‰
         if (input.Player.Dash.WasPressedThisFrame() && CanDash())
             stateMachine.ChangeState(player.dashState);
     }
@@ -76,3 +76,4 @@ public abstract class EntityState
         return true;
     }
 }
+

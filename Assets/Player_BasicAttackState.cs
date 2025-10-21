@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Player_BasicAttackState : EntityState
 {
@@ -6,6 +6,7 @@ public class Player_BasicAttackState : EntityState
     private float attackVelocityTimer;
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
+
     }
 
     public override void Enter()
@@ -14,14 +15,14 @@ public class Player_BasicAttackState : EntityState
         GenerateAttackVelocity();
     }
 
-    // UŒ‚’†‚Ìƒ^ƒXƒN‚ğ’è‹`‚·‚é
-    // Œy‚­‘O‚Éi‚Ü‚¹‚½‚èA“G‚É“–‚½‚Á‚½‚©‚Ç‚¤‚©Aanimation‚ªI‚í‚Á‚½‚ç‚Ç‚¤‚¢‚Á‚½state‚Æ‚·‚é‚Ì‚©B
+    // æ”»æ’ƒä¸­ã®ã‚¿ã‚¹ã‚¯ã‚’å®šç¾©ã™ã‚‹
+    // è»½ãå‰ã«é€²ã¾ã›ãŸã‚Šã€æ•µã«å½“ãŸã£ãŸã‹ã©ã†ã‹ã€animationãŒçµ‚ã‚ã£ãŸã‚‰ã©ã†ã„ã£ãŸstateã¨ã™ã‚‹ã®ã‹ã€‚
     public override void Update()
     {
         base.Update();
         HandleAttackVelocity();
 
-        // ‚±‚Ì’l‚ªfalse‚Æ‚È‚Á‚½“_‚ÅAidleó‘Ô‚É–ß‚·
+        // ã“ã®å€¤ãŒfalseã¨ãªã£ãŸæ™‚ç‚¹ã§ã€idleçŠ¶æ…‹ã«æˆ»ã™
         if (triggerCalled)
             stateMachine.ChangeState(player.idleState);
     }
@@ -29,17 +30,16 @@ public class Player_BasicAttackState : EntityState
     private void HandleAttackVelocity()
     {
         attackVelocityTimer -= Time.deltaTime;
-
-        // ƒ^ƒCƒ}[‚ª0‚É‚È‚Á‚½‚çAx = 0‚Æ‚µ‚Ä~‚ß‚é
+        // ã‚¿ã‚¤ãƒãƒ¼ãŒ0ã«ãªã£ãŸã‚‰ã€x = 0ã¨ã—ã¦æ­¢ã‚ã‚‹
         if (attackVelocityTimer < 0)
             player.SetVelocity(0, rb.linearVelocity.y);
     }
 
     private void GenerateAttackVelocity()
     {
-        attackVelocityTimer = player.attackVelocityDuration; // ƒ^ƒCƒ}[‚ª < 0 ‚É‚È‚é‚Ü‚Åi‚Ü‚¹‚é
-        // ƒvƒŒƒCƒ„[‚ÌˆÊ’u
-        // x‚ğattackVelocity.x‚Ì•ª‚¾‚¯ (Œü‚¢‚Ä‚¢‚é•ûŒü‚àl—¶‚µ‚Ä), y‚ğattackVelocity.y‚Ì•ª‚¾‚¯i‚Ü‚¹‚é
+        attackVelocityTimer = player.attackVelocityDuration; // ã‚¿ã‚¤ãƒãƒ¼ãŒ < 0 ã«ãªã‚‹ã¾ã§é€²ã¾ã›ã‚‹
+        // ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ä½ç½®
+        // xã‚’attackVelocity.xã®åˆ†ã ã‘ (å‘ã„ã¦ã„ã‚‹æ–¹å‘ã‚‚è€ƒæ…®ã—ã¦), yã‚’attackVelocity.yã®åˆ†ã ã‘é€²ã¾ã›ã‚‹
         player.SetVelocity(player.attackVelocity.x * player.facingDir, player.attackVelocity.y);
     }
 

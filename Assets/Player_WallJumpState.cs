@@ -1,16 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Player_WallJumpState : EntityState
 {
     public Player_WallJumpState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
+
     }
 
     public override void Enter()
     {
         base.Enter();
 
-        // Œ»İˆÊ’u‚©‚çAŒü‚¢‚Ä‚é•ûŒü‚Æ‚Í‹tŒü‚«‚É‚Ìx‚Æy‚É”ò‚Î‚·
+        // ç¾åœ¨ä½ç½®ã‹ã‚‰ã€å‘ã„ã¦ã‚‹æ–¹å‘ã¨ã¯é€†å‘ãã«ã®xã¨yã«é£›ã°ã™
         player.SetVelocity(player.wallJumpForce.x * -player.facingDir, player.wallJumpForce.y);
     }
 
@@ -25,6 +26,4 @@ public class Player_WallJumpState : EntityState
             stateMachine.ChangeState(player.wallSlideState);
 
     }
-
-
 }

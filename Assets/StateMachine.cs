@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class StateMachine
 {
@@ -21,5 +21,4 @@ public class StateMachine
     {
         currentState.Update();
     }
-
 }

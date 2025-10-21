@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Player_DashState : EntityState
 {
@@ -6,6 +6,7 @@ public class Player_DashState : EntityState
     private int dashDir;
     public Player_DashState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
+
     }
 
     public override void Enter()
@@ -14,7 +15,7 @@ public class Player_DashState : EntityState
 
         dashDir = player.facingDir;
         stateTimer = player.dashDuration;
-        // Œ³X‚Ìd—Í‰Á‘¬“x‚ğ•Û‘¶‚µ‚Ä‚¨‚«Aƒ_ƒbƒVƒ…’†‚Íd—Í‚ğ–³‹(0)‚É‚·‚é
+        // å…ƒã€…ã®é‡åŠ›åŠ é€Ÿåº¦ã‚’ä¿å­˜ã—ã¦ãŠãã€ãƒ€ãƒƒã‚·ãƒ¥ä¸­ã¯é‡åŠ›ã‚’ç„¡è¦–(0)ã«ã™ã‚‹
         originalGravityScale = rb.gravityScale;
         rb.gravityScale = 0;
     }
@@ -39,7 +40,7 @@ public class Player_DashState : EntityState
     {
         base.Exit();
         player.SetVelocity(0, 0);
-        // ƒ_ƒbƒVƒ…‚ªI‚í‚ê‚ÎAŒ³‚Ìd—Í‰Á‘¬“x‚É–ß‚·B
+        // ãƒ€ãƒƒã‚·ãƒ¥ãŒçµ‚ã‚ã‚Œã°ã€å…ƒã®é‡åŠ›åŠ é€Ÿåº¦ã«æˆ»ã™ã€‚
         rb.gravityScale = originalGravityScale;
     }
 
