@@ -12,6 +12,8 @@ public abstract class EntityState
 
 
     protected float stateTimer;
+    protected bool triggerCalled;
+
     /// <summary>
     /// C#でのコンストラクタ定義方法。
     /// EntityStateのインスタンスを作るときに自動で呼ばれ、引数をクラス変数に格納していく。
@@ -38,6 +40,7 @@ public abstract class EntityState
     public virtual void Enter()
     {
         anim.SetBool(animBoolName, true);
+        triggerCalled = false;
     }
 
     // we going to run logic of the state here
@@ -55,6 +58,11 @@ public abstract class EntityState
     public virtual void Exit()
     {
         anim.SetBool(animBoolName, false);
+    }
+
+    public void CallAnimationTrigger()
+    {
+        triggerCalled = true;
     }
 
     private bool CanDash()
