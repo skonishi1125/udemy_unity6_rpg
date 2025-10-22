@@ -18,6 +18,10 @@ public class Player_IdleState : Player_GroundedState
     {
         base.Update();
 
+        // 入力値のxが、向いている方向と同じ場合 && 壁の確認
+        if (player.moveInput.x == player.facingDir && player.wallDetected)
+            return;
+
         if (player.moveInput.x != 0)
             stateMachine.ChangeState(player.moveState);
     }
