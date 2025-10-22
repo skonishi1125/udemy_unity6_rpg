@@ -6,6 +6,7 @@ public class Player_FallState : Player_AiredState
     {
 
     }
+
     public override void Update()
     {
         base.Update();

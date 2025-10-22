@@ -19,7 +19,11 @@ public class Player_JumpState : Player_AiredState
         base.Update();
 
         // if Y velocity goes down, character is falling. transfer to fallState
-        if (rb.linearVelocity.y < 0)
+        // We need to be sure we are not in jump attack state when we transfer to fall state.
+        // && 移行のstateチェックを行わないと、
+        // fallStateとjumpAttackState(yの加速度をマイナスとしたとき)同フレームで条件があってしまい、
+        // 片方のアニメーションしか実行されなくなるのでそれを防ぐ。
+        if (rb.linearVelocity.y < 0 && stateMachine.currentState != player.jumpAttackState)
             stateMachine.ChangeState(player.fallState);
     }
 }
