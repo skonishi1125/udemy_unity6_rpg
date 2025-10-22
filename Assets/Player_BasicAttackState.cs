@@ -2,19 +2,21 @@
 
 public class Player_BasicAttackState : EntityState
 {
-
     private float attackVelocityTimer;
+    private float lastTimeAttacked;
 
+    private bool comboAttackQueued;
+    private int attackDir;
     private const int FirstComboIndex = 1; // We start combo index with number 1, this param is used in the Animator.
     private int comboIndex = 1;
     private int comboLimit = 3;
 
-    private float lastTimeAttacked;
+
     public Player_BasicAttackState(Player player, StateMachine stateMachine, string animBoolName) : base(player, stateMachine, animBoolName)
     {
         if (comboLimit != player.attackVelocity.Length)
         {
-            Debug.LogWarning("I've adjust comboLimit. according to attack velocity array.");
+            Debug.LogWarning("Adjust comboLimit to match attack velocity array.");
             comboLimit = player.attackVelocity.Length;
         }
     }
@@ -22,7 +24,16 @@ public class Player_BasicAttackState : EntityState
     public override void Enter()
     {
         base.Enter();
+        comboAttackQueued = false;
         ResetComboIndexIfNeeded();
+
+        //if (player.moveInput.x != 0)
+        //    attackDir = ((int)player.moveInput.x);
+        //else
+        //    attackDir = player.facingDir;
+        // Define attack direction according to input
+        attackDir = player.moveInput.x != 0 ? ((int)player.moveInput.x) : player.facingDir;  // 入力があればその方向に、そうでなければ向いている方向に向かって攻撃
+
 
         anim.SetInteger("basicAttackIndex", comboIndex);
         ApplyAttackVelocity();
@@ -37,9 +48,12 @@ public class Player_BasicAttackState : EntityState
         base.Update();
         HandleAttackVelocity();
 
-        // この値がfalseとなった時点で、idle状態に戻す
+        if (input.Player.Attack.WasPressedThisFrame())
+            QueueNextAttack();
+
+        // この値がfalseとなった時点で、idle状態に戻すような処理
         if (triggerCalled)
-            stateMachine.ChangeState(player.idleState);
+            HandleStateExit();
     }
 
     public override void Exit()
@@ -48,6 +62,24 @@ public class Player_BasicAttackState : EntityState
         comboIndex++;
         // remember time when we attacked
         lastTimeAttacked = Time.time;
+    }
+
+    private void HandleStateExit()
+    {
+        if (comboAttackQueued)
+        {
+            // 実行時点のフレームでfalseとし、その後Coroutineで次フレーム時点でtrueとする
+            anim.SetBool(animBoolName, false);
+            player.EnterAttackStateWithDelay();
+        }
+        else
+            stateMachine.ChangeState(player.idleState);
+    }
+
+    private void QueueNextAttack()
+    {
+        if (comboIndex < comboLimit)
+            comboAttackQueued = true;
     }
 
     private void HandleAttackVelocity()
@@ -64,7 +96,7 @@ public class Player_BasicAttackState : EntityState
         attackVelocityTimer = player.attackVelocityDuration; // タイマーが < 0 になるまで進ませる
         // プレイヤーの位置
         // xをattackVelocity.xの分だけ (向いている方向も考慮して), yをattackVelocity.yの分だけ進ませる
-        player.SetVelocity(attackVelocity.x * player.facingDir, attackVelocity.y);
+        player.SetVelocity(attackVelocity.x * attackDir, attackVelocity.y);
     }
 
     private void ResetComboIndexIfNeeded()

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Player : MonoBehaviour
     public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f; // 横入力をしながら攻撃したとき、少しだけ進ませるが、その時間(ダッシュの処理と同じ)
     public float comboResetTime = 1;
+    private Coroutine queuedAttackCo;
 
     [Header("Movement details")]
     public float moveSpeed;
@@ -88,6 +90,21 @@ public class Player : MonoBehaviour
     private void Start()
     {
         stateMachine.Initialize(idleState);
+    }
+
+    // CoroutineはPlayer以外では呼び出せない(MonoBehaviorを継承していないと使えない)ので、他クラスで実行するためのメソッド
+    public void EnterAttackStateWithDelay()
+    {
+        if (queuedAttackCo != null)
+            StopCoroutine(queuedAttackCo);
+
+        queuedAttackCo = StartCoroutine(EnterAttackStateWithDelayCo());
+    }
+
+    private IEnumerator EnterAttackStateWithDelayCo()
+    {
+        yield return new WaitForEndOfFrame();
+        stateMachine.ChangeState(basicAttackState);
     }
 
     private void Update()
