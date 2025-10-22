@@ -1,6 +1,4 @@
-﻿using UnityEditor.Rendering;
-using UnityEngine;
-using UnityEngine.UIElements;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -21,8 +19,9 @@ public class Player : MonoBehaviour
     public Player_BasicAttackState basicAttackState { get; private set; }
 
     [Header("Attack details")]
-    public Vector2 attackVelocity; // 
+    public Vector2[] attackVelocity;
     public float attackVelocityDuration = .1f; // 横入力をしながら攻撃したとき、少しだけ進ませるが、その時間(ダッシュの処理と同じ)
+    public float comboResetTime = 1;
 
     [Header("Movement details")]
     public float moveSpeed;

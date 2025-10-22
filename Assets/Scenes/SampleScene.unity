@@ -514,7 +514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1347920240
 Transform:
   m_ObjectHideFlags: 0
@@ -782,7 +782,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1617155472
 Transform:
   m_ObjectHideFlags: 0
@@ -930,8 +930,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d85d0d96a44ad514898d92706b56e0d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackVelocity: {x: 3, y: 1.5}
+  attackVelocity:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 2.5}
+  - {x: 2.75, y: 1.75}
   attackVelocityDuration: 0.1
+  comboResetTime: 1
   moveSpeed: 8
   jumpForce: 12
   wallJumpForce: {x: 6, y: 12}
