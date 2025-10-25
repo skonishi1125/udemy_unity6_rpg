@@ -142,6 +142,7 @@ public class Player : MonoBehaviour
 
     public void Flip()
     {
+        Debug.Log(rb.linearVelocity.x);
         transform.Rotate(0, 180, 0);
         facingRight = !facingRight;
         facingDir = facingDir * -1;
