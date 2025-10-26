@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Player_JumpAttackState : EntityState
+public class Player_JumpAttackState : PlayerState
 {
     // 地面設置判定
     private bool touchedGround;
