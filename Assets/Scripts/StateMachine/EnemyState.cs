@@ -16,6 +16,11 @@ public class EnemyState : EntityState
     {
         base.Update();
 
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            stateMachine.ChangeState(enemy.attackState);
+        }
+
         anim.SetFloat("moveAnimSpeedMultiplier", enemy.moveAnimSpeedMultiplier);
     }
 }
