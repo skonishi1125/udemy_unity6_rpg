@@ -22,5 +22,6 @@ public class EnemyState : EntityState
         }
 
         anim.SetFloat("moveAnimSpeedMultiplier", enemy.moveAnimSpeedMultiplier);
+        anim.SetFloat("xVelocity", rb.linearVelocity.x); // animator側のxVelocityの値を, 敵の持つrb.linearVelocity.xの値にする
     }
 }
