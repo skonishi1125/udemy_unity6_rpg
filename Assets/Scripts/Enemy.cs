@@ -11,6 +11,9 @@ public class Enemy : Entity
     [Header("Battle details")]
     public float battleMoveSpeed = 3;
     public float attackDistance = 2;
+    public float battleTimeDuration = 5;
+    public float minRetreatDistance = 1;
+    public Vector2 retreatVelocity;
 
     [Header("Movement details")]
     public float idleTime = 2;
@@ -23,7 +26,7 @@ public class Enemy : Entity
     [SerializeField] private Transform playerCheck;
     [SerializeField] private float playerCheckDistance = 10;
 
-    public RaycastHit2D PlayerDetection()
+    public RaycastHit2D PlayerDetected()
     {
         // 感知したもの（地面 or プレイヤー)かを確認し、なしorプレイヤー外のレイヤーかどうかで分岐させる
         RaycastHit2D hit =  Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer | whatIsGround);
@@ -41,6 +44,8 @@ public class Enemy : Entity
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (facingDir * playerCheckDistance), playerCheck.position.y));
         Gizmos.color = Color.blue;
         Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (facingDir * attackDistance), playerCheck.position.y));
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(playerCheck.position, new Vector3(playerCheck.position.x + (facingDir * minRetreatDistance), playerCheck.position.y));
 
 
 

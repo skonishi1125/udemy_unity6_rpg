@@ -5,6 +5,7 @@ public class Enemy_BattleState : EnemyState
 {
 
     private Transform player;
+    private float lastTimeWasInBattle;
 
     public Enemy_BattleState(Enemy enemy, StateMachine stateMachine, string animBoolName) : base(enemy, stateMachine, animBoolName)
     {
@@ -18,7 +19,14 @@ public class Enemy_BattleState : EnemyState
         //player = GameObject.Find("player").transform; // これでもplayerの情報を得られるが、重い
 
         if (player == null)
-            player = enemy.PlayerDetection().transform; // Battlestateは感知したときだけ動くので、こちらを使えばよい
+            player = enemy.PlayerDetected().transform; // Battlestateは感知したときだけ動くので、こちらを使えばよい
+
+        if (ShouldRetreat())
+        {
+            // enemy.SetVelocityで引かせると、後ろを向いて引いてしまうのでベクトルだけを変える
+            rb.linearVelocity = new Vector2(enemy.retreatVelocity.x * -DirectionToPlayer(), enemy.retreatVelocity.y);
+            enemy.HandleFlip(DirectionToPlayer());
+        }
 
     }
 
@@ -26,11 +34,21 @@ public class Enemy_BattleState : EnemyState
     {
         base.Update();
 
-        if (WithinAttackRange())
+        if (enemy.PlayerDetected())
+            UpdateBattleTimer();
+
+        if (battleTimeIsOver())
+            stateMachine.ChangeState(enemy.idleState);
+
+        if (WithinAttackRange() && enemy.PlayerDetected())
             stateMachine.ChangeState(enemy.attackState);
         else
             enemy.SetVelocity(enemy.battleMoveSpeed * DirectionToPlayer(), rb.linearVelocity.y);
     }
+
+    private void UpdateBattleTimer() => lastTimeWasInBattle = Time.time;
+
+    private bool battleTimeIsOver() => Time.time > lastTimeWasInBattle + enemy.battleTimeDuration;
 
     // 敵とplayerとの距離を確認し、近ければtrueを返して攻撃できるようにしている
     //private bool WithinAttackRange()
@@ -38,6 +56,8 @@ public class Enemy_BattleState : EnemyState
     //    return DistanceToPlayer() < enemy.attackDistance;
     //}
     private bool WithinAttackRange() => DistanceToPlayer() < enemy.attackDistance;
+
+    private bool ShouldRetreat() => DistanceToPlayer() < enemy.minRetreatDistance;
 
 
     private float DistanceToPlayer()

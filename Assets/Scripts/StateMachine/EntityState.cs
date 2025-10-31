@@ -27,6 +27,7 @@ public abstract class EntityState
     public virtual void Update()
     {
         stateTimer -= Time.deltaTime;
+        UpdateAnimationParameters();
     }
 
     // this will be called, everytime we exit state and change to a new one
@@ -35,11 +36,15 @@ public abstract class EntityState
         anim.SetBool(animBoolName, false);
     }
 
-    public void CallAnimationTrigger()
+    public void AnimationTrigger()
     {
         triggerCalled = true;
     }
 
+    public virtual void UpdateAnimationParameters()
+    {
+
+    }
 
 
 

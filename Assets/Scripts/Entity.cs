@@ -6,10 +6,6 @@ public class Entity : MonoBehaviour
     public Rigidbody2D rb { get; private set; }
     protected StateMachine stateMachine;
 
-
-
-
-
     private bool facingRight = true;
     public int facingDir { get; private set; } = 1; // 向いている方向 右: 1 左: -1
 
@@ -40,16 +36,16 @@ public class Entity : MonoBehaviour
 
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         HandleCollisionDetection();
         stateMachine.UpdateActiveState();
     }
 
     // Animatorの特定フレームにこのメソッドを紐づける
-    public void CallAnimationTrigger()
+    public void CurrentStateAnimationTrigger()
     {
-        stateMachine.currentState.CallAnimationTrigger();
+        stateMachine.currentState.AnimationTrigger();
     }
 
     public void SetVelocity(float xVelocity, float yVelocity)
@@ -58,7 +54,7 @@ public class Entity : MonoBehaviour
         HandleFlip(xVelocity);
     }
 
-    private void HandleFlip(float xVelocity)
+    public void HandleFlip(float xVelocity)
     {
         // →に動き、右向きでない場合
         if (xVelocity > 0 && facingRight == false)

@@ -25,11 +25,17 @@ public abstract class PlayerState: EntityState
     public override void Update()
     {
         base.Update();
-        anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
         // ダッシュボタンを押し、ダッシュができる状態なら
         if (input.Player.Dash.WasPressedThisFrame() && CanDash())
             stateMachine.ChangeState(player.dashState);
+
+    }
+
+    public override void UpdateAnimationParameters()
+    {
+        base.UpdateAnimationParameters();
+        anim.SetFloat("yVelocity", rb.linearVelocity.y);
 
     }
 
