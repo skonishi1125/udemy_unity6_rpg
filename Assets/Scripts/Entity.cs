@@ -20,6 +20,9 @@ public class Entity : MonoBehaviour
     public bool groundDetected { get; private set; }
     public bool wallDetected { get; private set; }
 
+    // Condition variables
+    private bool isKnocked;
+
     //private void Awake()
     protected virtual void Awake()
     {

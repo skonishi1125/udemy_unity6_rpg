@@ -731,6 +731,7 @@ GameObject:
   - component: {fileID: 915423281}
   - component: {fileID: 915423285}
   - component: {fileID: 915423286}
+  - component: {fileID: 915423287}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -885,6 +886,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   isDead: 0
+--- !u!114 &915423287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915423280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a561bf013521047973749bde782dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageMaterial: {fileID: 2100000, guid: 3d512e84971027241b7735b34cd614dc, type: 2}
+  onDamageVfxDuration: 0.15
 --- !u!1 &972537731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1706,6 +1721,7 @@ GameObject:
   - component: {fileID: 1693785336}
   - component: {fileID: 1693785337}
   - component: {fileID: 1693785338}
+  - component: {fileID: 1693785339}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1862,6 +1878,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 100
   isDead: 0
+--- !u!114 &1693785339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693785332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3a561bf013521047973749bde782dda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamageMaterial: {fileID: 2100000, guid: 3d512e84971027241b7735b34cd614dc, type: 2}
+  onDamageVfxDuration: 0.2
 --- !u!1 &1851414654
 GameObject:
   m_ObjectHideFlags: 0
