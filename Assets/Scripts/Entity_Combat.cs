@@ -2,8 +2,7 @@
 
 public class Entity_Combat : MonoBehaviour
 {
-
-    public Collider2D[] targetColliders;
+    public float damage = 10;
 
     // ターゲット検知
     [Header("Target detection")]
@@ -16,7 +15,13 @@ public class Entity_Combat : MonoBehaviour
 
         foreach (var target in GetDetectedColliders())
         {
-            Debug.Log("Attacking " + target.name);
+
+            Entity_Health targetHealth = target.GetComponent<Entity_Health>();
+
+            //if (targetHealth != null)
+            //    targetHealth.TakeDamage(damage);
+            targetHealth?.TakeDamage(damage); // 同じ
+
         }
 
     }
