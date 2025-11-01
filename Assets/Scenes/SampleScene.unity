@@ -730,8 +730,8 @@ GameObject:
   - component: {fileID: 915423282}
   - component: {fileID: 915423281}
   - component: {fileID: 915423285}
-  - component: {fileID: 915423286}
   - component: {fileID: 915423287}
+  - component: {fileID: 915423288}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -866,26 +866,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb31b4ca02a46242bd25a7579c3a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 35
   targetCheck: {fileID: 420856064}
   targetCheckRadius: 1
   whatIsTarget:
     serializedVersion: 2
     m_Bits: 128
---- !u!114 &915423286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 915423280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38cf99d49f0090542b807ff335d20097, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  isDead: 0
 --- !u!114 &915423287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,6 +886,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: 3d512e84971027241b7735b34cd614dc, type: 2}
   onDamageVfxDuration: 0.15
+--- !u!114 &915423288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915423280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db9f306f8c4e5814eb9688b59d3994b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHp: 0
+  maxHp: 100
+  isDead: 0
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 7, y: 7}
+  knockbackDuration: 0.2
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
 --- !u!1 &972537731
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,8 +1726,8 @@ GameObject:
   - component: {fileID: 1693785335}
   - component: {fileID: 1693785336}
   - component: {fileID: 1693785337}
-  - component: {fileID: 1693785338}
   - component: {fileID: 1693785339}
+  - component: {fileID: 1693785338}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1858,7 +1864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb31b4ca02a46242bd25a7579c3a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 35
   targetCheck: {fileID: 2049164104}
   targetCheckRadius: 1
   whatIsTarget:
@@ -1876,8 +1882,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9f306f8c4e5814eb9688b59d3994b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentHp: 0
   maxHp: 100
   isDead: 0
+  knockbackPower: {x: 1.5, y: 2.5}
+  heavyKnockbackPower: {x: 7, y: 7}
+  knockbackDuration: 0.2
+  heavyKnockbackDuration: 0.5
+  heavyDamageThreshold: 0.3
 --- !u!114 &1693785339
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class Entity : MonoBehaviour
 
     // Condition variables
     private bool isKnocked;
+    private Coroutine knockbackCo;
 
     //private void Awake()
     protected virtual void Awake()
@@ -51,8 +53,31 @@ public class Entity : MonoBehaviour
         stateMachine.currentState.AnimationTrigger();
     }
 
+    public void ReceiveKnockback(Vector2 knockback, float duration)
+    {
+        if (knockbackCo != null)
+            StopCoroutine(knockbackCo);
+
+        knockbackCo = StartCoroutine(KnockbackCo(knockback, duration));
+    }
+
+    private IEnumerator KnockbackCo(Vector2 knockback, float duration)
+    {
+        isKnocked = true;
+        rb.linearVelocity = knockback;
+
+        yield return new WaitForSeconds(duration);
+
+        rb.linearVelocity = Vector2.zero; // 調整後、0に戻しておかないとノックバックで滑り続ける
+        isKnocked = false;
+    }
+
     public void SetVelocity(float xVelocity, float yVelocity)
     {
+        // 攻撃ノックバック中は、操作をできなくする
+        if (isKnocked)
+            return;
+
         rb.linearVelocity = new Vector2(xVelocity, yVelocity);
         HandleFlip(xVelocity);
     }

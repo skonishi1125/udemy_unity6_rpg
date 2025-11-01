@@ -26,6 +26,7 @@ public class Entity_VFX : MonoBehaviour
         onDamageVfxCoroutine = StartCoroutine(OnDamageVfxCo());
     }
 
+    // マテリアルとして白くなるものを渡したのち、コルーチンで戻す
     private IEnumerator OnDamageVfxCo()
     {
         sr.material = onDamageMaterial;
