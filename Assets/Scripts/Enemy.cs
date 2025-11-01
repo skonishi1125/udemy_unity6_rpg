@@ -52,11 +52,15 @@ public class Enemy : Entity
 
     public RaycastHit2D PlayerDetected()
     {
-        // 感知したもの（地面 or プレイヤー)かを確認し、なしorプレイヤー外のレイヤーかどうかで分岐させる
+        // 感知したもの（地面 or プレイヤー)かを確認
         RaycastHit2D hit =  Physics2D.Raycast(playerCheck.position, Vector2.right * facingDir, playerCheckDistance, whatIsPlayer | whatIsGround);
+
+        // なし or Player 以外かのレイヤーかどうかで分岐させる。
+        // この場合、地面だった場合はデフォルトの値を返している
         if (hit.collider == null || hit.collider.gameObject.layer != LayerMask.NameToLayer("Player"))
             return default; // colliderがnull, pointが(0,0)など、すべてデフォルトの形で返す
 
+        // Playerが感知されていたら、Player情報がhitに格納されているのでそれを返している
         return hit;
     }
 

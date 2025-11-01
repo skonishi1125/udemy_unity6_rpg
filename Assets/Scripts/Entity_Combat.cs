@@ -13,6 +13,7 @@ public class Entity_Combat : MonoBehaviour
     public void PerformAttack()
     {
 
+        // 攻撃判定に入った物理要素たちを順に処理
         foreach (var target in GetDetectedColliders())
         {
 
@@ -20,6 +21,7 @@ public class Entity_Combat : MonoBehaviour
 
             //if (targetHealth != null)
             //    targetHealth.TakeDamage(damage);
+            //Debug.Log(transform.position); // このtransformは、攻撃者自身の座標情報
             targetHealth?.TakeDamage(damage, transform); // 同じ
 
         }
