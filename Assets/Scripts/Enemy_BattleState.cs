@@ -15,11 +15,12 @@ public class Enemy_BattleState : EnemyState
     {
         base.Enter();
 
-        //Debug.Log("I entered battle state.");
-        //player = GameObject.Find("player").transform; // これでもplayerの情報を得られるが、重い
+        UpdateBattleTimer();
 
-        if (player == null)
-            player = enemy.PlayerDetected().transform; // Battlestateは感知したときだけ動くので、こちらを使えばよい
+        //if (player == null)
+        //    player = enemy.GetPlayerReference();
+        player ??= enemy.GetPlayerReference(); // 同じ書き方。nullチェック
+
 
         if (ShouldRetreat())
         {

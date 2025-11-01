@@ -20,7 +20,7 @@ public class Entity_Combat : MonoBehaviour
 
             //if (targetHealth != null)
             //    targetHealth.TakeDamage(damage);
-            targetHealth?.TakeDamage(damage); // 同じ
+            targetHealth?.TakeDamage(damage, transform); // 同じ
 
         }
 
