@@ -27,12 +27,15 @@ public class Enemy_Skeleton : Enemy , ICounterable
     {
         base.Update();
 
-        if (Input.GetKeyDown(KeyCode.F))
+        if (Input.GetKeyDown(KeyCode.G))
             HandleCounter();
     }
 
     public void HandleCounter()
     {
+        if (canBeStunned == false)
+            return;
+
         stateMachine.ChangeState(stunnedState);
     }
 

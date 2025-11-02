@@ -11,6 +11,8 @@ public class Enemy_DeadState : EnemyState
 
     public override void Enter()
     {
+        Debug.Log("Dead state!");
+
         //base.Enter(); // DeadStateには特にどのanimも割り当てないので、従来のbase.Enter()は実行する必要がない
         anim.enabled = false;
         col.enabled = false;
