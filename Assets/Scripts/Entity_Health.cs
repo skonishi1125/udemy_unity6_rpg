@@ -54,7 +54,7 @@ public class Entity_Health : MonoBehaviour
     protected void Die()
     {
         isDead = true;
-        Debug.Log("Entity died!");
+        entity.EntityDeath();
     }
 
     // transform: 被ダメージ側
