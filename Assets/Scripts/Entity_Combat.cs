@@ -16,14 +16,8 @@ public class Entity_Combat : MonoBehaviour
         // 攻撃判定に入った物理要素たちを順に処理
         foreach (var target in GetDetectedColliders())
         {
-
-            Entity_Health targetHealth = target.GetComponent<Entity_Health>();
-
-            //if (targetHealth != null)
-            //    targetHealth.TakeDamage(damage);
-            //Debug.Log(transform.position); // このtransformは、攻撃者自身の座標情報
-            targetHealth?.TakeDamage(damage, transform); // 同じ
-
+            IDamagable damagable = target.GetComponent<IDamagable>();
+            damagable?.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
         }
 
     }

@@ -8,6 +8,7 @@ public class Enemy : Entity
     public Enemy_AttackState attackState;
     public Enemy_BattleState battleState;
     public Enemy_DeadState deadState;
+    public Enemy_StunnedState stunnedState;
 
     [Header("Battle details")]
     public float battleMoveSpeed = 3;
@@ -15,6 +16,10 @@ public class Enemy : Entity
     public float battleTimeDuration = 5;
     public float minRetreatDistance = 1;
     public Vector2 retreatVelocity;
+
+    [Header("Stunned state details")]
+    public float stunnedDuration = 1;
+    public Vector2 stunnedVelocity = new Vector2(7, 7);
 
     [Header("Movement details")]
     public float idleTime = 2;
