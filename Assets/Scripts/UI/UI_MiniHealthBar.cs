@@ -11,7 +11,7 @@ public class UI_MiniHealthBar : MonoBehaviour
 
     }
 
-private void OnEnable()
+    private void OnEnable()
     {
         entity.OnFliped += HandleFlip;
     }
