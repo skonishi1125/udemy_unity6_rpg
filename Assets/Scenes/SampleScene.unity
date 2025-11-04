@@ -1444,6 +1444,7 @@ GameObject:
   - component: {fileID: 915423285}
   - component: {fileID: 915423290}
   - component: {fileID: 915423289}
+  - component: {fileID: 915423291}
   m_Layer: 8
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
@@ -1621,13 +1622,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
-  maxHp: 100
   isDead: 0
   knockbackPower: {x: 1.5, y: 2.5}
   heavyKnockbackPower: {x: 7, y: 7}
   knockbackDuration: 0.2
   heavyKnockbackDuration: 0.5
   heavyDamageThreshold: 0.3
+--- !u!114 &915423291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 915423280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f38d0f6c657b244bbdf94c66c1aca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    baseValue: 100
+  vitality:
+    baseValue: 0
 --- !u!1 &991834018
 GameObject:
   m_ObjectHideFlags: 0
@@ -46151,6 +46167,7 @@ GameObject:
   - component: {fileID: 3472277326209616344}
   - component: {fileID: 7455717681984931268}
   - component: {fileID: 5396745908268662165}
+  - component: {fileID: 8669868352478591895}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -46273,7 +46290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHp: 0
-  maxHp: 100
   isDead: 0
   knockbackPower: {x: 1.5, y: 2.5}
   heavyKnockbackPower: {x: 7, y: 7}
@@ -46440,6 +46456,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &8669868352478591895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3120437340684669673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f38d0f6c657b244bbdf94c66c1aca2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth:
+    baseValue: 100
+  vitality:
+    baseValue: 7
 --- !u!4 &8740821114408723362
 Transform:
   m_ObjectHideFlags: 0
