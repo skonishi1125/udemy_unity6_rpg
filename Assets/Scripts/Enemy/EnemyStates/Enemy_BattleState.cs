@@ -17,9 +17,12 @@ public class Enemy_BattleState : EnemyState
 
         UpdateBattleTimer();
 
-        //if (player == null)
-        //    player = enemy.GetPlayerReference();
-        player ??= enemy.GetPlayerReference(); // 同じ書き方。nullチェック
+        if (player == null)
+        {
+            Debug.Log("battlestate enter!");
+            player = enemy.GetPlayerReference();
+        }
+        //player ??= enemy.GetPlayerReference(); // 同じ書き方。nullチェック。nullの場合は入れる, そうでない場合は何もしない
 
 
         if (ShouldRetreat())

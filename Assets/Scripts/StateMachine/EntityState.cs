@@ -19,7 +19,6 @@ public abstract class EntityState
 
     public virtual void Enter()
     {
-        Debug.Log(animBoolName);
         anim.SetBool(animBoolName, true);
         triggerCalled = false;
     }
