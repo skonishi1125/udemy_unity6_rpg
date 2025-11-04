@@ -2,6 +2,7 @@
 
 public class Entity_Combat : MonoBehaviour
 {
+    private Entity_VFX vfx;
     public float damage = 10;
 
     // ターゲット検知
@@ -10,6 +11,11 @@ public class Entity_Combat : MonoBehaviour
     [SerializeField] private float targetCheckRadius = 1;
     [SerializeField] private LayerMask whatIsTarget;
 
+    private void Awake()
+    {
+        vfx = GetComponent<Entity_VFX>();
+    }
+
     public void PerformAttack()
     {
 
@@ -17,7 +23,12 @@ public class Entity_Combat : MonoBehaviour
         foreach (var target in GetDetectedColliders())
         {
             IDamagable damagable = target.GetComponent<IDamagable>();
+
+            if (damagable == null)
+                continue; // スキップして次のtargetへ
+
             damagable?.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
+            vfx.CreateOnHitVFX(target.transform);
         }
 
     }
