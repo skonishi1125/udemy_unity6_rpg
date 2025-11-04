@@ -27,8 +27,10 @@ public class Entity_Combat : MonoBehaviour
             if (damagable == null)
                 continue; // スキップして次のtargetへ
 
-            damagable?.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
-            vfx.CreateOnHitVFX(target.transform);
+            bool targetGotHit = damagable.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
+
+            if (targetGotHit)
+                vfx.CreateOnHitVFX(target.transform);
         }
 
     }

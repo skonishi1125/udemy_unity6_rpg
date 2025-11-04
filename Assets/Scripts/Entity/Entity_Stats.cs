@@ -14,4 +14,20 @@ public class Entity_Stats : MonoBehaviour
 
         return baseHp + bonusHp;
     }
+
+    public float GetEvasion()
+    {
+        // Statクラスから作ったevasionで、GeValue()メソッドを呼ぶ。 
+        // -> baseDamageはUnity上のインスペクタで割り当てることができるので、そっちで割り当てた値をdebuglogに出す
+        Debug.Log(defense.evasion.GetValue());
+        float baseEvasion = defense.evasion.GetValue();
+        float bonusEvasion = major.agility.GetValue() * .5f;
+
+        float totalEvasion = baseEvasion + bonusEvasion;
+        float evasionCap = 85; // 回避可能な最大の確率
+
+        float finalEvasion = Mathf.Clamp(totalEvasion, 0, evasionCap); // 0 - 85の間でなければ、85を返すような処理
+
+        return finalEvasion;
+    }
 }
