@@ -20,7 +20,8 @@ public class VFX_AutoController : MonoBehaviour
         ApplyRandomOffset();
         ApplyRandomRotation();
 
-        Destroy(gameObject, destroyDelay);
+        if (autoDestroy == true)
+            Destroy(gameObject, destroyDelay);
     }
 
     // エフェクトが出るたび、多少x,y軸がずれる

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce5d81cf28d723e439bf3aeaf60b2616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  autoDestroy: 0
+  autoDestroy: 1
   destroyDelay: 1
   randomOffset: 1
   randomRotation: 1

@@ -1642,8 +1642,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth:
     baseValue: 100
-  vitality:
-    baseValue: 0
+  major:
+    strength:
+      baseValue: 0
+    agility:
+      baseValue: 0
+    intelligence:
+      baseValue: 0
+    vitality:
+      baseValue: 0
 --- !u!1 &991834018
 GameObject:
   m_ObjectHideFlags: 0
@@ -46470,8 +46477,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth:
     baseValue: 100
-  vitality:
-    baseValue: 7
+  major:
+    strength:
+      baseValue: 0
+    agility:
+      baseValue: 0
+    intelligence:
+      baseValue: 0
+    vitality:
+      baseValue: 0
 --- !u!4 &8740821114408723362
 Transform:
   m_ObjectHideFlags: 0
