@@ -22,7 +22,7 @@ public class Entity_Combat : MonoBehaviour
 
     }
 
-    private Collider2D[] GetDetectedColliders()
+    protected Collider2D[] GetDetectedColliders()
     {
         // Physicsチェック
         // 該当のpositon, 半径以内に, 指定したレイヤーがあればそれを格納する
