@@ -1661,9 +1661,9 @@ MonoBehaviour:
     armorReduction:
       baseValue: 0
     fireDamage:
-      baseValue: 10
+      baseValue: 100
     iceDamage:
-      baseValue: 7
+      baseValue: 25
     lightningDamage:
       baseValue: 6
   defense:
@@ -46503,7 +46503,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 100
+    baseValue: 10000
   major:
     strength:
       baseValue: 0
@@ -46534,7 +46534,7 @@ MonoBehaviour:
     evasion:
       baseValue: 0
     fireRes:
-      baseValue: 0
+      baseValue: 100
     iceRes:
       baseValue: 0
     lightningRes:

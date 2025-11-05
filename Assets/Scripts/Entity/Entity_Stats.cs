@@ -1,6 +1,7 @@
 ﻿using Unity.Cinemachine;
 using UnityEngine;
 
+
 public class Entity_Stats : MonoBehaviour
 {
     public Stat maxHealth;
@@ -8,7 +9,7 @@ public class Entity_Stats : MonoBehaviour
     public Stat_OffenseGroup offense;
     public Stat_DefenseGroup defense;
 
-    public float GetElementalDamage()
+    public float GetElementalDamage(out ElementType element)
     {
         float fireDamage = offense.fireDamage.GetValue();
         float iceDamage = offense.iceDamage.GetValue();
@@ -16,16 +17,26 @@ public class Entity_Stats : MonoBehaviour
         float bonusElementalDamage = major.intelligence.GetValue();
 
         float highestDamage = fireDamage;
+        element = ElementType.Fire;
 
         if (iceDamage > highestDamage)
+        {
             highestDamage = iceDamage;
+            element = ElementType.Ice;
+        }
 
         if(lightningDamage > highestDamage)
+        {
             highestDamage = lightningDamage;
+            element = ElementType.Lightning;
+        }
 
 
         if (highestDamage <= 0)
+        {
+            element = ElementType.None;
             return 0;
+        }
 
         float bonusFire = (fireDamage == highestDamage) ? 0 : fireDamage * .5f;
         float bonusIce = (iceDamage == highestDamage) ? 0 : iceDamage * .5f;
@@ -35,6 +46,33 @@ public class Entity_Stats : MonoBehaviour
         float finalDamage = highestDamage + weakerElementsDamage + bonusElementalDamage;
 
         return finalDamage;
+
+    }
+
+    public float GetElementaResistance(ElementType element)
+    {
+        float baseResistance = 0;
+        float bonusResistance = major.intelligence.GetValue() * .5f;
+
+        switch (element)
+        {
+            case ElementType.Fire:
+                baseResistance = defense.fireRes.GetValue();
+                break;
+            case ElementType.Ice:
+                baseResistance = defense.iceRes.GetValue();
+                break;
+            case ElementType.Lightning:
+                baseResistance = defense.lightningRes.GetValue();
+                break;
+        }
+
+        float resistance = baseResistance + bonusResistance;
+        float resistanceCap = 75f;
+        float finalResistance = Mathf.Clamp(resistance, 0, resistanceCap) / 100;
+
+        return finalResistance;
+
 
     }
 

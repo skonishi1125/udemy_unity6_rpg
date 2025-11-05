@@ -27,9 +27,9 @@ public class Entity_Combat : MonoBehaviour
             if (damegable == null)
                 continue; // スキップして次のtargetへ
 
-            float elementalDamage = stats.GetElementalDamage();
+            float elementalDamage = stats.GetElementalDamage(out ElementType element);
             float damage = stats.GetPhysicalDamage(out bool isCrit);
-            bool targetGotHit = damegable.TakeDamage(damage,elementalDamage, transform); // このtransformは、攻撃者自身の座標情報
+            bool targetGotHit = damegable.TakeDamage(damage,elementalDamage, element, transform); // このtransformは、攻撃者自身の座標情報
 
             if (targetGotHit)
                 vfx.CreateOnHitVFX(target.transform, isCrit);
