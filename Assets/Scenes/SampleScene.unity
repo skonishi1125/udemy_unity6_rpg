@@ -1586,7 +1586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bb31b4ca02a46242bd25a7579c3a203, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   targetCheck: {fileID: 420856064}
   targetCheckRadius: 1
   whatIsTarget:
@@ -1608,6 +1607,7 @@ MonoBehaviour:
   onDamageVfxDuration: 0.2
   hitVfxColor: {r: 1, g: 0, b: 0, a: 1}
   hitVfx: {fileID: 3288308562611225346, guid: b0ae95338f3a48b488e4dde56ee4bcaf, type: 3}
+  critHitVfx: {fileID: 4645635534304002758, guid: 384fb2e1ccff94f41b18ae6b9d93e6af, type: 3}
   attackAlert: {fileID: 1983119927}
 --- !u!114 &915423290
 MonoBehaviour:
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38cf99d49f0090542b807ff335d20097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 9999999
   isDead: 0
   knockbackPower: {x: 1.5, y: 2.5}
   heavyKnockbackPower: {x: 7, y: 7}
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 100
+    baseValue: 1000000
   major:
     strength:
       baseValue: 0
@@ -1655,9 +1655,9 @@ MonoBehaviour:
     damage:
       baseValue: 10
     critPower:
-      baseValue: 0
+      baseValue: 5
     critChance:
-      baseValue: 0
+      baseValue: 100
     fireDamage:
       baseValue: 0
     iceDamage:
@@ -16414,6 +16414,7 @@ MonoBehaviour:
   onDamageVfxDuration: 0.2
   hitVfxColor: {r: 1, g: 1, b: 1, a: 1}
   hitVfx: {fileID: 0}
+  critHitVfx: {fileID: 0}
 --- !u!1 &1949906995
 GameObject:
   m_ObjectHideFlags: 0
@@ -46234,7 +46235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0b483632c17a18409e58c6266adff7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
   targetCheck: {fileID: 8485375405560676615}
   targetCheckRadius: 1
   whatIsTarget:
@@ -46320,7 +46320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db9f306f8c4e5814eb9688b59d3994b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHp: 0
+  currentHp: 999
   isDead: 0
   knockbackPower: {x: 1.5, y: 2.5}
   heavyKnockbackPower: {x: 7, y: 7}
@@ -46394,8 +46394,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamageMaterial: {fileID: 2100000, guid: 3d512e84971027241b7735b34cd614dc, type: 2}
   onDamageVfxDuration: 0.2
-  hitVfxColor: {r: 0.1273585, g: 1, b: 0.21117386, a: 1}
+  hitVfxColor: {r: 1, g: 0.9700875, b: 0.3066038, a: 1}
   hitVfx: {fileID: 3288308562611225346, guid: b0ae95338f3a48b488e4dde56ee4bcaf, type: 3}
+  critHitVfx: {fileID: 4645635534304002758, guid: 384fb2e1ccff94f41b18ae6b9d93e6af, type: 3}
 --- !u!70 &7489237967484690193
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -46514,9 +46515,9 @@ MonoBehaviour:
     damage:
       baseValue: 10
     critPower:
-      baseValue: 0
+      baseValue: 250
     critChance:
-      baseValue: 0
+      baseValue: 50
     fireDamage:
       baseValue: 0
     iceDamage:
@@ -46527,7 +46528,7 @@ MonoBehaviour:
     armor:
       baseValue: 0
     evasion:
-      baseValue: 75
+      baseValue: 0
     fireRes:
       baseValue: 0
     iceRes:

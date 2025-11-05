@@ -3,7 +3,7 @@
 public class Entity_Combat : MonoBehaviour
 {
     private Entity_VFX vfx;
-    public float damage = 10;
+    private Entity_Stats stats;
 
     // ターゲット検知
     [Header("Target detection")]
@@ -14,11 +14,11 @@ public class Entity_Combat : MonoBehaviour
     private void Awake()
     {
         vfx = GetComponent<Entity_VFX>();
+        stats = GetComponent<Entity_Stats>();
     }
 
     public void PerformAttack()
     {
-
         // 攻撃判定に入った物理要素たちを順に処理
         foreach (var target in GetDetectedColliders())
         {
@@ -27,10 +27,11 @@ public class Entity_Combat : MonoBehaviour
             if (damagable == null)
                 continue; // スキップして次のtargetへ
 
+            float damage = stats.GetPhysicalDamage(out bool isCrit);
             bool targetGotHit = damagable.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
 
             if (targetGotHit)
-                vfx.CreateOnHitVFX(target.transform);
+                vfx.CreateOnHitVFX(target.transform, isCrit);
         }
 
     }
