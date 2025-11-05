@@ -20,8 +20,6 @@ public class Entity_Health : MonoBehaviour, IDamagable
     [SerializeField] private float heavyDamageThreshold = .3f; // % of health you should lose to consider damage as heavy. ★Threshold: 閾値
 
 
-
-
     protected virtual void Awake()
     {
         entityVfx = GetComponent<Entity_VFX>();
@@ -44,12 +42,19 @@ public class Entity_Health : MonoBehaviour, IDamagable
             return false;
         }
 
-        Vector2 knockback = CalculateKnockback(damage, damageDealer);
-        float duration = CalcurateDuration(damage);
+        Entity_Stats attackerStats = damageDealer.GetComponent<Entity_Stats>();
+        float armorReduction = attackerStats != null ? attackerStats.GetArmorReduction() : 0;
+
+        float mitigation = stats.GetArmorMitigation(armorReduction);
+        float finalDamage = damage * (1 - mitigation); // 例: 85%減なら、0.15をかける形になる
+
+        Vector2 knockback = CalculateKnockback(finalDamage, damageDealer);
+        float duration = CalcurateDuration(finalDamage);
 
         entity?.ReceiveKnockback(knockback, duration);
         entityVfx?.PlayOnDamageVfx();
-        ReduceHp(damage);
+        ReduceHp(finalDamage);
+        Debug.Log("damage taken:" + finalDamage);
 
         return true;
 

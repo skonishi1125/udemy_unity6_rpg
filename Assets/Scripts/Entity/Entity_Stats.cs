@@ -28,20 +28,37 @@ public class Entity_Stats : MonoBehaviour
 
     }
 
-    public float GetMaxHealth()
+    public float GetArmorMitigation(float armorReduction)
     {
-        float baseMaxHealth = maxHealth.GetValue();
-        float bonusMaxHealth = major.vitality.GetValue() * 5;
-        float finalMaxHealth = baseMaxHealth + bonusMaxHealth;
+        float baseArmor = defense.armor.GetValue();
+        float bonusArmor = major.vitality.GetValue();
+        float totalArmor = baseArmor + bonusArmor;
 
-        return finalMaxHealth;
+        // Mathf.Clamp( 1 - armorReduction, 0, 1); の短縮形
+        float reductionMultiplier = Mathf.Clamp01( 1 - armorReduction); // 1 - .4f = .6f
+        float effectiveArmor = totalArmor * reductionMultiplier;
+
+
+        float mitigation = effectiveArmor / (effectiveArmor + 100); // 単純にアーマーを重ねて、物理防御が上がりすぎるのを防ぐ式
+        float mitigationCap = .85f; // 最大85%まで軽減ができる
+        
+        float finalMitigation = Mathf.Clamp(mitigation, 0, mitigationCap);
+
+        return finalMitigation;
     }
+
+    public float GetArmorReduction()
+    {
+        float finalReduction = offense.armorReduction.GetValue() / 100;
+
+        return finalReduction;
+    }
+
 
     public float GetEvasion()
     {
         // Statクラスから作ったevasionで、GeValue()メソッドを呼ぶ。 
         // -> baseDamageはUnity上のインスペクタで割り当てることができるので、そっちで割り当てた値をdebuglogに出す
-        Debug.Log(defense.evasion.GetValue());
         float baseEvasion = defense.evasion.GetValue();
         float bonusEvasion = major.agility.GetValue() * .5f;
 
@@ -52,4 +69,15 @@ public class Entity_Stats : MonoBehaviour
 
         return finalEvasion;
     }
+
+
+    public float GetMaxHealth()
+    {
+        float baseMaxHealth = maxHealth.GetValue();
+        float bonusMaxHealth = major.vitality.GetValue() * 5;
+        float finalMaxHealth = baseMaxHealth + bonusMaxHealth;
+
+        return finalMaxHealth;
+    }
+
 }

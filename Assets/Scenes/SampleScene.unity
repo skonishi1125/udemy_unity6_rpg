@@ -882,7 +882,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.131057, y: 2.0382338, z: 4.834193}
+  m_LocalPosition: {x: -1.0210562, y: 1.8882337, z: 4.834193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1561,7 +1561,7 @@ Transform:
   m_GameObject: {fileID: 915423280}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.87, y: 0.77, z: -0.16730161}
+  m_LocalPosition: {x: -12.84, y: 0.39, z: -0.16730161}
   m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1641,7 +1641,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth:
-    baseValue: 1000000
+    baseValue: 100
   major:
     strength:
       baseValue: 0
@@ -1655,9 +1655,11 @@ MonoBehaviour:
     damage:
       baseValue: 10
     critPower:
-      baseValue: 5
+      baseValue: 0
     critChance:
-      baseValue: 100
+      baseValue: 0
+    armorReduction:
+      baseValue: 0
     fireDamage:
       baseValue: 0
     iceDamage:
@@ -2076,7 +2078,7 @@ Transform:
   m_GameObject: {fileID: 1236606103}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.131057, y: 2.0382338, z: 4.834193}
+  m_LocalPosition: {x: -1.0210562, y: 1.8882337, z: 4.834193}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46250,7 +46252,7 @@ Transform:
   m_GameObject: {fileID: 3120437340684669673}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.85, y: 0.48, z: -1}
+  m_LocalPosition: {x: -3.74, y: 0.33, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -46513,11 +46515,13 @@ MonoBehaviour:
       baseValue: 0
   offense:
     damage:
-      baseValue: 10
+      baseValue: 0
     critPower:
-      baseValue: 250
+      baseValue: 0
     critChance:
-      baseValue: 50
+      baseValue: 0
+    armorReduction:
+      baseValue: 0
     fireDamage:
       baseValue: 0
     iceDamage:

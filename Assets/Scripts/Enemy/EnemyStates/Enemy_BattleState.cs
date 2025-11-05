@@ -19,7 +19,6 @@ public class Enemy_BattleState : EnemyState
 
         if (player == null)
         {
-            Debug.Log("battlestate enter!");
             player = enemy.GetPlayerReference();
         }
         //player ??= enemy.GetPlayerReference(); // 同じ書き方。nullチェック。nullの場合は入れる, そうでない場合は何もしない
