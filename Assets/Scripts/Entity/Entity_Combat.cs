@@ -22,13 +22,14 @@ public class Entity_Combat : MonoBehaviour
         // 攻撃判定に入った物理要素たちを順に処理
         foreach (var target in GetDetectedColliders())
         {
-            IDamagable damagable = target.GetComponent<IDamagable>();
+            IDamagable damegable = target.GetComponent<IDamagable>();
 
-            if (damagable == null)
+            if (damegable == null)
                 continue; // スキップして次のtargetへ
 
+            float elementalDamage = stats.GetElementalDamage();
             float damage = stats.GetPhysicalDamage(out bool isCrit);
-            bool targetGotHit = damagable.TakeDamage(damage, transform); // このtransformは、攻撃者自身の座標情報
+            bool targetGotHit = damegable.TakeDamage(damage,elementalDamage, transform); // このtransformは、攻撃者自身の座標情報
 
             if (targetGotHit)
                 vfx.CreateOnHitVFX(target.transform, isCrit);
