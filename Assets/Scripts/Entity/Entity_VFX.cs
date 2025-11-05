@@ -17,11 +17,46 @@ public class Entity_VFX : MonoBehaviour
     [SerializeField] private GameObject hitVfx;
     [SerializeField] private GameObject critHitVfx;
 
+    [Header("Element Colors")]
+    [SerializeField] private Color chillvfx = Color.cyan;
+    private Color originalHitVfxColor;
+
+
     private void Awake()
     {
         entity = GetComponent<Entity>();
         sr = GetComponentInChildren < SpriteRenderer > ();
         originalMaterial = sr.material;
+        originalHitVfxColor = hitVfxColor;
+    }
+
+    public void PlayOnStatusVfx(float duration, ElementType element)
+    {
+        if (element == ElementType.Ice)
+            StartCoroutine(PlayStatusVfxCo(duration, chillvfx));
+    }
+
+    private IEnumerator PlayStatusVfxCo(float duration, Color effectColor)
+    {
+        float tickInterval = .25f;
+        float timeHasPassed = 0;
+
+        Color lightColor = effectColor * 1.2f;
+        Color darkColor = effectColor * .9f;
+
+        bool toggle = false;
+
+        while (timeHasPassed < duration)
+        {
+            sr.color = toggle ? lightColor : darkColor;
+            toggle = !toggle;
+
+            yield return new WaitForSeconds(tickInterval);
+            timeHasPassed = timeHasPassed + tickInterval;
+        }
+
+        sr.color = Color.white;
+
     }
 
     // 引数で渡した場所にVFXインスタンスををクローンする(ヒット描写を作る)
@@ -33,6 +68,16 @@ public class Entity_VFX : MonoBehaviour
 
         if (entity.facingDir == -1 && isCrit)
             vfx.transform.Rotate(0, 180, 0);
+    }
+
+    public void UpdateOnHitColor(ElementType element)
+    {
+        if (element == ElementType.Ice)
+            hitVfxColor = chillvfx;
+
+        if(element == ElementType.None)
+            hitVfxColor = originalHitVfxColor;
+
     }
 
 
