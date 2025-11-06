@@ -31,7 +31,7 @@ public class Entity_Combat : MonoBehaviour
             if (damegable == null)
                 continue; // スキップして次のtargetへ
 
-            float elementalDamage = stats.GetElementalDamage(out ElementType element);
+            float elementalDamage = stats.GetElementalDamage(out ElementType element, .6f);
             float damage = stats.GetPhysicalDamage(out bool isCrit);
             bool targetGotHit = damegable.TakeDamage(damage,elementalDamage, element, transform); // このtransformは、攻撃者自身の座標情報
 
@@ -46,7 +46,7 @@ public class Entity_Combat : MonoBehaviour
         }
     }
 
-    public void ApplyStatusEffect(Transform target, ElementType element)
+    public void ApplyStatusEffect(Transform target, ElementType element, float scaleFactor = 1)
     {
         Entity_StatusHandler statusHandler = target.GetComponent<Entity_StatusHandler>();
 
@@ -55,6 +55,13 @@ public class Entity_Combat : MonoBehaviour
 
         if (element == ElementType.Ice && statusHandler.CanBeApplied(ElementType.Ice))
             statusHandler.ApplyChilledEffect(defaultDuration, chillSlowMultiplier);
+
+        if (element == ElementType.Fire && statusHandler.CanBeApplied(ElementType.Fire))
+        {
+            float fireDamage = stats.offense.fireDamage.GetValue() * scaleFactor;
+            statusHandler.ApplyBurnEffect(defaultDuration, fireDamage);
+        }
+
 
     }
 
