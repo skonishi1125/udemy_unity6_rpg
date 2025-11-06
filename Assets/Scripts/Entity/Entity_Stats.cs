@@ -3,10 +3,12 @@
 
 public class Entity_Stats : MonoBehaviour
 {
+    public Stat_SetUpSO defaultSetup;
+
     public Stat_ResourceGroup resources;
-    public Stat_MajorGroup major;
     public Stat_OffenseGroup offense;
     public Stat_DefenseGroup defense;
+    public Stat_MajorGroup major;
 
     public float GetElementalDamage(out ElementType element, float scaleFactor = 1)
     {
@@ -182,6 +184,44 @@ public class Entity_Stats : MonoBehaviour
 
 
         }
+    }
+
+    [ContextMenu("Update Default Stats Setup")]
+    public void ApplyDefaultStatSetup()
+    {
+        if (defaultSetup == null)
+        {
+            Debug.Log("No default stat setup assigned");
+            return;
+        }
+
+        resources.maxHealth.SetBaseValue(defaultSetup.maxHealth);
+        resources.healthRegen.SetBaseValue(defaultSetup.healthRegen);
+
+        major.strength.SetBaseValue(defaultSetup.strength);
+        major.agility.SetBaseValue(defaultSetup.agiity);
+        major.intelligence.SetBaseValue(defaultSetup.intelligence);
+        major.vitality.SetBaseValue(defaultSetup.vitality);
+
+        offense.attackSpeed.SetBaseValue(defaultSetup.attackSpeed);
+        offense.damage.SetBaseValue(defaultSetup.damage);
+        offense.critChance.SetBaseValue(defaultSetup.critChance);
+        offense.critPower.SetBaseValue(defaultSetup.critPower);
+        offense.armorReduction.SetBaseValue(defaultSetup.armorReduction);
+
+        offense.iceDamage.SetBaseValue(defaultSetup.iceDamage);
+        offense.fireDamage.SetBaseValue(defaultSetup.fireDamagee);
+        offense.lightningDamage.SetBaseValue(defaultSetup.lightningDamage);
+
+        defense.armor.SetBaseValue(defaultSetup.armor);
+        defense.evasion.SetBaseValue(defaultSetup.evasion);
+
+        defense.iceRes.SetBaseValue(defaultSetup.iceResistance);
+        defense.fireRes.SetBaseValue(defaultSetup.fireResistance);
+        defense.lightningRes.SetBaseValue(defaultSetup.lightningResistance);
+
+
+
     }
 
 }

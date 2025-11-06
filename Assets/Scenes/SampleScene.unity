@@ -1541,9 +1541,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f38d0f6c657b244bbdf94c66c1aca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSetup: {fileID: 11400000, guid: 5c3c1c456a3933d4db8d11e2a0a4d722, type: 2}
   resources:
     maxHealth:
-      baseValue: 1000
+      baseValue: 100
       modifiers: []
     healthRegen:
       baseValue: 0
@@ -1569,7 +1570,7 @@ MonoBehaviour:
       baseValue: 10
       modifiers: []
     critPower:
-      baseValue: 0
+      baseValue: 150
       modifiers: []
     critChance:
       baseValue: 0
@@ -46314,6 +46315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f38d0f6c657b244bbdf94c66c1aca2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultSetup: {fileID: 11400000, guid: 044475afd0ac83a4a8bc4fd73a2d450b, type: 2}
   resources:
     maxHealth:
       baseValue: 1000

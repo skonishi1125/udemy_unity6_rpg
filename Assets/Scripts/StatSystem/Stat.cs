@@ -22,6 +22,8 @@ public class Stat
         return finalValue;
     }
 
+    public void SetBaseValue(float value) => baseValue = value;
+
     public void AddModifier(float value, string source)
     {
         StatModifier modToAdd = new StatModifier(value, source);
