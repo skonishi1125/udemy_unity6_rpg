@@ -16,7 +16,7 @@ public class Object_Buff : MonoBehaviour
     [Header("Buff details")]
     [SerializeField] private Buff[] buffs;
     [SerializeField] private string buffName;
-    [SerializeField] private float buffValue = 5;
+    //[SerializeField] private float buffValue = 5;
     [SerializeField] private float buffDuration = 4;
     [SerializeField] private bool canBeUsed = true;
 
