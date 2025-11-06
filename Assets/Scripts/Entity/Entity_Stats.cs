@@ -1,5 +1,4 @@
-﻿using Unity.Cinemachine;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 public class Entity_Stats : MonoBehaviour
@@ -25,7 +24,7 @@ public class Entity_Stats : MonoBehaviour
             element = ElementType.Ice;
         }
 
-        if(lightningDamage > highestDamage)
+        if (lightningDamage > highestDamage)
         {
             highestDamage = lightningDamage;
             element = ElementType.Lightning;
@@ -103,13 +102,13 @@ public class Entity_Stats : MonoBehaviour
         float totalArmor = baseArmor + bonusArmor;
 
         // Mathf.Clamp( 1 - armorReduction, 0, 1); の短縮形
-        float reductionMultiplier = Mathf.Clamp01( 1 - armorReduction); // 1 - .4f = .6f
+        float reductionMultiplier = Mathf.Clamp01(1 - armorReduction); // 1 - .4f = .6f
         float effectiveArmor = totalArmor * reductionMultiplier;
 
 
         float mitigation = effectiveArmor / (effectiveArmor + 100); // 単純にアーマーを重ねて、物理防御が上がりすぎるのを防ぐ式
         float mitigationCap = .85f; // 最大85%まで軽減ができる
-        
+
         float finalMitigation = Mathf.Clamp(mitigation, 0, mitigationCap);
 
         return finalMitigation;
@@ -146,6 +145,43 @@ public class Entity_Stats : MonoBehaviour
         float finalMaxHealth = baseMaxHealth + bonusMaxHealth;
 
         return finalMaxHealth;
+    }
+
+    public Stat GetStatBytype(StatType type)
+    {
+        switch (type)
+        {
+            case StatType.MaxHealth: return resources.maxHealth;
+            case StatType.HealthRegen: return resources.healthRegen;
+
+            case StatType.Strength: return major.strength;
+            case StatType.Agility: return major.agility;
+            case StatType.Intelligence: return major.intelligence;
+            case StatType.Vitality: return major.vitality;
+
+            case StatType.AttackSpeed: return offense.attackSpeed;
+            case StatType.Damage: return offense.damage;
+            case StatType.CritChance: return offense.critChance;
+            case StatType.CritPower: return offense.critPower;
+            case StatType.ArmorReduction: return offense.armorReduction;
+
+            case StatType.FireDamage: return offense.fireDamage;
+            case StatType.IceDamage: return offense.iceDamage;
+            case StatType.LightningDamage: return offense.lightningDamage;
+
+            case StatType.Armor: return defense.armor;
+            case StatType.Evasion: return defense.evasion;
+
+            case StatType.IceResistance: return defense.iceRes;
+            case StatType.FireResistance: return defense.fireRes;
+            case StatType.LightningResistance: return defense.lightningRes;
+
+            default:
+                Debug.LogWarning($"StatType {type} not implemented yet.");
+                return null;
+
+
+        }
     }
 
 }
