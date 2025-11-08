@@ -22,12 +22,13 @@ public class UI_TreeConnection : MonoBehaviour
 
     public Vector2 GetConnectionPoint(RectTransform rect)
     {
+        // childNodeConnectionPointの位置を、別のUI要素(rect.parent)のローカル座標として表現する
         RectTransformUtility.ScreenPointToLocalPointInRectangle
             (
-                rect.parent as RectTransform,
-                childNodeConnectionPoint.position,
-                null,
-                out var localPosition
+                rect.parent as RectTransform, // 基準となるRectTransform 親要素のUI
+                childNodeConnectionPoint.position, // スクリーンの座標(ワールド座標) 
+                null, // カメラ
+                out var localPosition // 出力(ローカル座標)
             );
 
         return localPosition;
