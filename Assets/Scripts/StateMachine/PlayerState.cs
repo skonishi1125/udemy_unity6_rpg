@@ -4,6 +4,7 @@ public abstract class PlayerState: EntityState
 {
     protected Player player;
     protected PlayerInputSet input;
+    protected Player_SkillManager skills;
 
 
     /// <summary>
@@ -18,6 +19,7 @@ public abstract class PlayerState: EntityState
         rb = player.rb;
         input = player.input;
         stats = player.stats;
+        skills = player.skillManager;
     }
 
     // everitime state will be changed, enter will be called
@@ -29,7 +31,10 @@ public abstract class PlayerState: EntityState
 
         // ダッシュボタンを押し、ダッシュができる状態なら
         if (input.Player.Dash.WasPressedThisFrame() && CanDash())
+        {
+            skills.dash.SetSkillOnCooldown();
             stateMachine.ChangeState(player.dashState);
+        }
 
     }
 
@@ -42,6 +47,9 @@ public abstract class PlayerState: EntityState
 
     private bool CanDash()
     {
+        if (skills.dash.CanUseSkill() == false)
+            return false;
+
         if (player.wallDetected)
             return false;
 
