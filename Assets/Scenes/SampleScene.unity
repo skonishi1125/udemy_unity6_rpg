@@ -919,7 +919,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 658263996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -928,11 +928,11 @@ RectTransform:
   - {fileID: 1595090701}
   - {fileID: 742234043}
   - {fileID: 1626043324}
-  m_Father: {fileID: 1682936634}
+  m_Father: {fileID: 1117409020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 192.49988}
+  m_AnchoredPosition: {x: -403.5, y: -73.50012}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &658263998
@@ -961,12 +961,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485d2315f2719724c98305882f1a5633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neededNodes:
+  - {fileID: 1697431368}
+  conflictNodes:
+  - {fileID: 1712760288}
+  isUnlocked: 0
+  isLocked: 0
   skillData: {fileID: 11400000, guid: 6966a9224fd910f43ac86237945121a9, type: 2}
   skillName: Healing wisp
   skillIcon: {fileID: 1626043325}
+  skillCost: 2
   lockedColorHex: '#9D9D9D'
-  isUnlocked: 0
-  isLocked: 0
 --- !u!1 &687782279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1099,7 +1104,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -27156469, guid: b8b164688cf0b1846a982a95f0a8c3f7, type: 3}
+  m_Sprite: {fileID: -361516890, guid: b8b164688cf0b1846a982a95f0a8c3f7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1899,6 +1904,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1112234301}
   m_CullTransparentMesh: 1
+--- !u!1 &1117409019
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1117409020}
+  - component: {fileID: 1117409021}
+  m_Layer: 5
+  m_Name: UI_SkillTree
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1117409020
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117409019}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1697431367}
+  - {fileID: 658263997}
+  - {fileID: 1712760286}
+  - {fileID: 1203866690}
+  m_Father: {fileID: 1682936634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 997.5, y: 283}
+  m_SizeDelta: {x: 907, y: 520}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1117409021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1117409019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9edc37233b1b1de4098b860dd4baed3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillPoints: 10
 --- !u!1 &1144075016
 GameObject:
   m_ObjectHideFlags: 0
@@ -2168,7 +2226,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203866689}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2178,11 +2236,11 @@ RectTransform:
   - {fileID: 1343598709}
   - {fileID: 1373337669}
   - {fileID: 866539689}
-  m_Father: {fileID: 1682936634}
+  m_Father: {fileID: 1117409020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1241, y: 283}
+  m_AnchoredPosition: {x: 243.5, y: 0}
   m_SizeDelta: {x: 420, y: 520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1203866691
@@ -2201,6 +2259,11 @@ MonoBehaviour:
   skillName: {fileID: 1343598710}
   skillDescription: {fileID: 1373337670}
   skillRequirement: {fileID: 866539690}
+  metConditionHex: '#B2D43F'
+  notMetConditionHex: '#F84B45'
+  importantInfoHex: '#517DFF'
+  exampleColor: {r: 0.3160377, g: 0.48942083, b: 1, a: 1}
+  lockedSkillText: You've taken a different path - this skill is now locked.
 --- !u!1 &1236030640
 GameObject:
   m_ObjectHideFlags: 0
@@ -3390,10 +3453,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1697431367}
-  - {fileID: 1712760286}
-  - {fileID: 658263997}
-  - {fileID: 1203866690}
+  - {fileID: 1117409020}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3501,7 +3561,7 @@ GameObject:
   - component: {fileID: 1697431368}
   - component: {fileID: 1697431369}
   m_Layer: 5
-  m_Name: UI_TreeNode - Time Echo
+  m_Name: UI_TreeNode - Time echo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3514,7 +3574,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697431366}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3523,11 +3583,11 @@ RectTransform:
   - {fileID: 655119718}
   - {fileID: 1144075017}
   - {fileID: 1236030641}
-  m_Father: {fileID: 1682936634}
+  m_Father: {fileID: 1117409020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: 384}
+  m_AnchoredPosition: {x: -403.5, y: 118}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1697431368
@@ -3542,12 +3602,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485d2315f2719724c98305882f1a5633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 21f234bd579039b46b2af547cea96c0a, type: 2}
-  skillName: Time Echo
-  skillIcon: {fileID: 1236030642}
-  lockedColorHex: '#9D9D9D'
+  neededNodes: []
+  conflictNodes: []
   isUnlocked: 0
   isLocked: 0
+  skillData: {fileID: 11400000, guid: 21f234bd579039b46b2af547cea96c0a, type: 2}
+  skillName: Time echo
+  skillIcon: {fileID: 1236030642}
+  skillCost: 1
+  lockedColorHex: '#9D9D9D'
 --- !u!114 &1697431369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3582,7 +3645,7 @@ GameObject:
   - component: {fileID: 1712760288}
   - component: {fileID: 1712760287}
   m_Layer: 5
-  m_Name: UI_TreeNode - Healing wisp
+  m_Name: UI_TreeNode - Timeless attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3595,7 +3658,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1712760285}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3604,11 +3667,11 @@ RectTransform:
   - {fileID: 860580656}
   - {fileID: 360869419}
   - {fileID: 724873129}
-  m_Father: {fileID: 1682936634}
+  m_Father: {fileID: 1117409020}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 492.5531, y: 234.44684}
+  m_AnchoredPosition: {x: -250.41138, y: -35.088684}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1712760287
@@ -3637,12 +3700,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 485d2315f2719724c98305882f1a5633, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillData: {fileID: 11400000, guid: 6966a9224fd910f43ac86237945121a9, type: 2}
-  skillName: Healing wisp
-  skillIcon: {fileID: 724873130}
-  lockedColorHex: '#9D9D9D'
+  neededNodes:
+  - {fileID: 1697431368}
+  conflictNodes:
+  - {fileID: 658263999}
   isUnlocked: 0
   isLocked: 0
+  skillData: {fileID: 11400000, guid: ef0c3a90bfc084747bcf4c51a66d2fc9, type: 2}
+  skillName: Timeless attack
+  skillIcon: {fileID: 724873130}
+  skillCost: 2
+  lockedColorHex: '#9D9D9D'
 --- !u!1 &1788495987
 GameObject:
   m_ObjectHideFlags: 0
