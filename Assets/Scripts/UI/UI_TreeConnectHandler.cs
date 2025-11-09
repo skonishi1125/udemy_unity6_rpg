@@ -57,8 +57,12 @@ public class UI_TreeConnectHandler : MonoBehaviour
 
             detail.childNode.SetPosition(targetPosition);
             detail.childNode.SetConnectionImage(connectionImage);
+
             // オブジェクトを子階層の最後にする。foreachの中で行われることで、自然とソートされる
-            detail.childNode.transform.SetAsLastSibling();
+            //detail.childNode.transform.SetAsLastSibling(); 不具合があるのでコメントアウト
+
+
+
         }
     }
 

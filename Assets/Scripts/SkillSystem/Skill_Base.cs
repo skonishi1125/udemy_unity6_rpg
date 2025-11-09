@@ -3,6 +3,8 @@
 public class Skill_Base : MonoBehaviour
 {
     [Header("General details")]
+    [SerializeField] SkillType skillType;
+    [SerializeField] protected SkillUnpgradeType upgradeType;
     [SerializeField] private float cooldown;
     private float lastTimeUsed;
 
@@ -10,6 +12,11 @@ public class Skill_Base : MonoBehaviour
     {
         // ゲーム開始時、すぐにスキルが使えるようにしておく
         lastTimeUsed = lastTimeUsed - cooldown;
+    }
+
+    public void SetSkillUpgrade(SkillUnpgradeType upgrade)
+    {
+        upgradeType = upgrade;
     }
 
     public bool CanUseSkill()

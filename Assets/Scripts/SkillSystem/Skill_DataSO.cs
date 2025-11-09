@@ -4,6 +4,8 @@
 public class Skill_DataSO : ScriptableObject
 {
     public int cost;
+    public SkillType skillType;
+    public SkillUnpgradeType upgradeType;
 
     [Header("Skill description")]
     public string displayName;
