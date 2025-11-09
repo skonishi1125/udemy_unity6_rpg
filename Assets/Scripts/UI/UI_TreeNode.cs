@@ -7,6 +7,7 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private UI ui;
     private RectTransform rect;
     private UI_SkillTree skillTree;
+    private UI_TreeConnectHandler connectHandler;
 
     [Header("Unlock detals")]
     public UI_TreeNode[] neededNodes;
@@ -27,16 +28,31 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         ui = GetComponentInParent<UI>();
         rect = GetComponent<RectTransform>();
         skillTree = GetComponentInParent<UI_SkillTree>();
+        connectHandler = GetComponent<UI_TreeConnectHandler>();
 
         UpdateIconColor(GetColorByHex(lockedColorHex)); // グレーみたいな色を被せて、アンロックっぽい見た目にする
+    }
+
+    public void Refund()
+    {
+        isUnlocked = false;
+        isLocked = false;
+        UpdateIconColor(GetColorByHex(lockedColorHex));
+
+        skillTree.AddSkillPoints(skillData.cost);
+        connectHandler.UnlockConnectionImage(false);
+
+        // skill manager and reset skill
     }
 
     private void Unlock()
     {
         isUnlocked = true;
         UpdateIconColor(Color.white); // ロック解除っぽい見た目にする
-        skillTree.RemoveSkillPoints(skillData.cost);
         LockConflictNodes(); // 取得時、競合スキルがあればそちらのフラグを変更し、取得ができないようにする。
+
+        skillTree.RemoveSkillPoints(skillData.cost);
+        connectHandler.UnlockConnectionImage(true);
 
         // プレイヤーのSkillManagerにアクセス
         // SkillManagerのSkillをアンロックする
@@ -88,25 +104,29 @@ public class UI_TreeNode : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         if (CanBeLocked())
             Unlock();
-        else
-            Debug.Log("Cannot be Unlocked..");
+        else if (isLocked)
+            ui.skillToolTip.LockedSkillEffect();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-
         ui.skillToolTip.ShowToolTip(true, rect, this);
 
-        if (isUnlocked == false)
-            UpdateIconColor(Color.white * .9f);
+        if (isUnlocked || isLocked)
+            return;
+
+        Color color = Color.white * .9f; color.a = 1;
+        UpdateIconColor(color);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         ui.skillToolTip.ShowToolTip(false, rect);
 
-        if (isUnlocked == false)
-            UpdateIconColor(lastColor);
+        if (isUnlocked || isLocked)
+            return;
+
+        UpdateIconColor(lastColor);
 
     }
 
