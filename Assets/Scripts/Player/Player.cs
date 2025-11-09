@@ -6,6 +6,8 @@ public class Player : Entity
 {
     public static event Action OnPlayerDeath;
 
+    private UI ui;
+
     public PlayerInputSet input { get; private set; }
 
     public Player_IdleState idleState { get; private set; }
@@ -44,6 +46,8 @@ public class Player : Entity
     protected override void Awake()
     {
         base.Awake();
+
+        ui = FindAnyObjectByType<UI>(); // 重い処理だが、暫定対応. Update()等では使わないほうが良い
 
         input = new PlayerInputSet();
 
@@ -137,6 +141,8 @@ public class Player : Entity
         //input.Player.Movement.canceled - input stops (キーを離す)
         input.Player.Movement.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         input.Player.Movement.canceled += ctx => moveInput = Vector2.zero;
+
+        input.Player.ToggleSkillTreeUI.performed += ctx => ui.ToggleSkillTreeUI();
     }
     private void OnDisable()
     {
