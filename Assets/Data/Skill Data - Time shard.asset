@@ -13,10 +13,14 @@ MonoBehaviour:
   m_Name: Skill Data - Time shard
   m_EditorClassIdentifier: 
   cost: 0
-  skillType: 0
+  unlockedByDefault: 1
+  skillType: 2
   upgradeData:
-    upgradeType: 0
+    upgradeType: 6
     cooldown: 0
-  displayName: 
-  description: 
-  icon: {fileID: 0}
+  displayName: Time shard
+  description: 'Create a shard filled with elemental magic.
+
+    The shard explodes
+    when touched by an enemy or time goes up'
+  icon: {fileID: -1470534521, guid: b8b164688cf0b1846a982a95f0a8c3f7, type: 3}
