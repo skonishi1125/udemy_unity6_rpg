@@ -5,6 +5,7 @@ using System;
 public class Skill_DataSO : ScriptableObject
 {
     public int cost;
+    public bool unlockedByDefault;
     public SkillType skillType;
     public UpgradeData upgradeData;
 
@@ -18,7 +19,7 @@ public class Skill_DataSO : ScriptableObject
 
 }
 
-[System.Serializable]
+[Serializable]
 public class UpgradeData
 {
     public SkillUpgradeType upgradeType;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,19 +28,21 @@ public class UI_TreeConnectHandler : MonoBehaviour
             originalColor = connectionImage.color;
     }
 
-    private void OnValidate()
+    public UI_TreeNode[] GetChildNodes()
     {
-        if (connectionDetails.Length <= 0)
-            return;
+        List<UI_TreeNode> childrenToReturn = new List<UI_TreeNode>();
 
-        if (connectionDetails.Length != connections.Length)
+        foreach (var node in connectionDetails)
         {
-            Debug.Log("Amount of details should be same as amount of connections. - " + gameObject.name);
-            return;
+            // Unity側で、UI_TreeNode GameObjectに紐づけた子要素があればそれを取得
+            if (node.childNode != null)
+                childrenToReturn.Add(node.childNode.GetComponent<UI_TreeNode>());
         }
 
-        UpdateConnection();
+        return childrenToReturn.ToArray();
     }
+
+
 
     public void UpdateConnection()
     {
@@ -57,11 +60,8 @@ public class UI_TreeConnectHandler : MonoBehaviour
 
             detail.childNode.SetPosition(targetPosition);
             detail.childNode.SetConnectionImage(connectionImage);
-
             // オブジェクトを子階層の最後にする。foreachの中で行われることで、自然とソートされる
-            //detail.childNode.transform.SetAsLastSibling(); 不具合があるのでコメントアウト
-
-
+            detail.childNode.transform.SetAsLastSibling();
 
         }
     }
@@ -93,5 +93,18 @@ public class UI_TreeConnectHandler : MonoBehaviour
     public void SetPosition(Vector2 position) => rect.anchoredPosition = position;
 
 
+    private void OnValidate()
+    {
+        if (connectionDetails.Length <= 0)
+            return;
+
+        if (connectionDetails.Length != connections.Length)
+        {
+            Debug.Log("Amount of details should be same as amount of connections. - " + gameObject.name);
+            return;
+        }
+
+        UpdateConnection();
+    }
 
 }
