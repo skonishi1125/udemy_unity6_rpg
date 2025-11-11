@@ -4,7 +4,7 @@ public class Skill_Base : MonoBehaviour
 {
     [Header("General details")]
     [SerializeField] SkillType skillType;
-    [SerializeField] protected SkillUnpgradeType upgradeType;
+    [SerializeField] protected SkillUpgradeType upgradeType;
     [SerializeField] private float cooldown;
     private float lastTimeUsed;
 
@@ -14,9 +14,10 @@ public class Skill_Base : MonoBehaviour
         lastTimeUsed = lastTimeUsed - cooldown;
     }
 
-    public void SetSkillUpgrade(SkillUnpgradeType upgrade)
+    public void SetSkillUpgrade(UpgradeData upgrade)
     {
-        upgradeType = upgrade;
+        upgradeType = upgrade.upgradeType;
+        cooldown = upgrade.cooldown;
     }
 
     public bool CanUseSkill()
@@ -32,6 +33,9 @@ public class Skill_Base : MonoBehaviour
 
         return true;
     }
+
+    protected bool Unlocked(SkillUpgradeType upgradeToCheck) => upgradeType == upgradeToCheck;
+
 
     // ゲーム開始後15秒後、5秒のcooldownスキルを使った場合、 20秒まで使用不可
     private bool OnCoolDown() => Time.time < lastTimeUsed + cooldown;

@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cost: 1
   skillType: 0
-  upgradeType: 0
+  upgradeData:
+    upgradeType: 0
+    cooldown: 3
   displayName: Quick Dash
   description: 'Dash to avoid attacks.
 

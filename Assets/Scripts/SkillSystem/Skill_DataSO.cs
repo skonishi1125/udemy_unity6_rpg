@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System;
 
 [CreateAssetMenu(menuName = "RPG Setup/Skill Data", fileName = "Skill Data - ")]
 public class Skill_DataSO : ScriptableObject
 {
     public int cost;
     public SkillType skillType;
-    public SkillUnpgradeType upgradeType;
+    public UpgradeData upgradeData;
 
     [Header("Skill description")]
     public string displayName;
@@ -15,4 +16,11 @@ public class Skill_DataSO : ScriptableObject
 
     // アンロック済みかどうか
 
+}
+
+[System.Serializable]
+public class UpgradeData
+{
+    public SkillUpgradeType upgradeType;
+    public float cooldown;
 }

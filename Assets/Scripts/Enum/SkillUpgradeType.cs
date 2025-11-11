@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum SkillUnpgradeType
+public enum SkillUpgradeType
 {
     // ----- Dash Tree -----
     Dash,

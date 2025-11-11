@@ -13,6 +13,9 @@ public class Player_DashState : PlayerState
     {
         base.Enter();
 
+        skillManager.dash.OnStartEffect();
+        player.vfx.DoImageEchoEffect(player.dashDuration);
+
         //dashDir = player.facingDir;
         dashDir = player.moveInput.x != 0 ? ((int)player.moveInput.x) : player.facingDir; // 入力があればその方向に、そうでなければ向いている方向に向かってダッシュ
         stateTimer = player.dashDuration;
@@ -40,6 +43,9 @@ public class Player_DashState : PlayerState
     public override void Exit()
     {
         base.Exit();
+
+        skillManager.dash.OnEndEffect();
+
         player.SetVelocity(0, 0);
         // ダッシュが終われば、元の重力加速度に戻す。
         rb.gravityScale = originalGravityScale;
