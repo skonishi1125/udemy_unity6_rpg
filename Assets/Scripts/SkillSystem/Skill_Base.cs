@@ -2,6 +2,8 @@
 
 public class Skill_Base : MonoBehaviour
 {
+    public Player player {  get; private set; }
+
     [Header("General details")]
     [SerializeField] SkillType skillType;
     [SerializeField] protected SkillUpgradeType upgradeType;
@@ -10,6 +12,7 @@ public class Skill_Base : MonoBehaviour
 
     protected virtual void Awake()
     {
+        player = GetComponentInParent<Player>();
         // ゲーム開始時、すぐにスキルが使えるようにしておく
         lastTimeUsed = lastTimeUsed - cooldown;
     }
@@ -47,7 +50,7 @@ public class Skill_Base : MonoBehaviour
 
 
     // ゲーム開始後15秒後、5秒のcooldownスキルを使った場合、 20秒まで使用不可
-    private bool OnCoolDown() => Time.time < lastTimeUsed + cooldown;
+    protected bool OnCoolDown() => Time.time < lastTimeUsed + cooldown;
     public void SetSkillOnCooldown() => lastTimeUsed = Time.time;
     public void ResetCooldownBy(float cooldownReduction) => lastTimeUsed = lastTimeUsed + cooldownReduction;
     public void ResetCooldown() => lastTimeUsed = Time.time;
