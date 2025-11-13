@@ -3515,6 +3515,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1250715355669988015, guid: ee2bb48f57305fd459aa6abce68b1de6, type: 3}
+      propertyPath: resources.maxHealth.baseValue
+      value: 250
+      objectReference: {fileID: 0}
     - target: {fileID: 2098091731393432049, guid: ee2bb48f57305fd459aa6abce68b1de6, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
@@ -55516,7 +55520,7 @@ MonoBehaviour:
       baseValue: 0
       modifiers: []
     lightningDamage:
-      baseValue: 0
+      baseValue: 25
       modifiers: []
   defense:
     armor:
